@@ -1,1 +1,1 @@
-# Real estate manage serivce
+# Real estate management serivce

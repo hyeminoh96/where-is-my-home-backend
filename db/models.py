@@ -3,7 +3,6 @@ from sqlalchemy import Column, Integer, String, Boolean
 from database import Base
 
 
-# TODO: Pydantic model 사용 고려해보기
 class Buyer(Base):
     __tablename__ = "buyer"
 
@@ -34,3 +33,4 @@ class Property(Base):
     type = Column(String)  # FIXME to enum
     is_active = Column(Boolean, default=True)
     description = Column(String)
+    # TODO: owner_id relation 설정

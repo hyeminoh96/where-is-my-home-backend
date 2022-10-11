@@ -24,7 +24,7 @@ class UserBase(BaseModel):
     name: str
     phone_number: str
     address: str
-    is_active: str
+    is_active: bool
     description: Union[str, None] = None
 
 

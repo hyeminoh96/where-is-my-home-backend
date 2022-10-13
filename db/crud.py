@@ -8,12 +8,24 @@ def get_buyer(db: Session, buyer_id: int):
     return db.query(models.Buyer).filter(models.Buyer.id == buyer_id).first()
 
 
+def get_buyers(db: Session, skip: int = 0, limit: int = 100):
+    return db.query(models.Buyer).offset(skip).limit(limit).all()
+
+
 def get_seller(db: Session, seller_id: int):
     return db.query(models.Buyer).filter(models.Buyer.id == seller_id).first()
 
 
+def get_sellers(db: Session, skip: int = 0, limit: int = 100):
+    return db.query(models.Seller).offset(skip).limit(limit).all()
+
+
 def get_property(db: Session, property_id: int):
     return db.query(models.Buyer).filter(models.Buyer.id == property_id).first()
+
+
+def get_properties(db: Session, skip: int = 0, limit: int = 100):
+    return db.query(models.Property).offset(skip).limit(limit).all()
 
 
 def create_buyer(db: Session, buyer: schemas.UserCreate):
@@ -34,7 +46,7 @@ def create_seller(db: Session, seller: schemas.UserCreate):
     return new_seller
 
 
-def create_property(db: Session, _property: schemas.PropertyCreate):
+def create_property(db: Session, _property: schemas.PropertyCreate) -> property:
     new_property = models.Property(address=_property.address, type=_property.type,
                                    is_active=_property.is_active, description=_property.description)
     db.add(new_property)

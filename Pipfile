@@ -9,6 +9,8 @@ uvicorn = "*"
 sqlalchemy = "*"
 pydantic = "*"
 alembic = "*"
+pymysql = "*"
+cryptography = "*"
 
 [dev-packages]
 

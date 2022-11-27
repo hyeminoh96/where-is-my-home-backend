@@ -101,7 +101,7 @@ def read_property(property_id: int, db: Session = Depends(get_db)):
 
 
 @app.post("/property", response_model=schemas.Property)
-def create_property(item=schemas.PropertyCreate, db: Session = Depends(get_db)):
+def create_property(item: schemas.PropertyCreate, db: Session = Depends(get_db)):
     # TODO: existing validation
     return crud.create_property(db=db, _property=item)
 

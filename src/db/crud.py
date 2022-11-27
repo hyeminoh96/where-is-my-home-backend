@@ -12,7 +12,7 @@ def get_buyers(db: Session, skip: int = 0, limit: int = 100):
 
 
 def get_seller(db: Session, seller_id: int):
-    return db.query(models.Buyer).filter(models.Buyer.id == seller_id).first()
+    return db.query(models.Seller).filter(models.Seller.id == seller_id).first()
 
 
 def get_sellers(db: Session, skip: int = 0, limit: int = 100):
@@ -20,7 +20,7 @@ def get_sellers(db: Session, skip: int = 0, limit: int = 100):
 
 
 def get_property(db: Session, property_id: int):
-    return db.query(models.Buyer).filter(models.Buyer.id == property_id).first()
+    return db.query(models.Property).filter(models.Property.id == property_id).first()
 
 
 def get_properties(db: Session, skip: int = 0, limit: int = 100):

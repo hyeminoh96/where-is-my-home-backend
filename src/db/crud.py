@@ -46,8 +46,6 @@ def create_seller(db: Session, seller: schemas.UserCreate):
 
 
 def create_property(db: Session, _property: schemas.PropertyCreate):
-    print("print11111")
-    print(type(_property))
     new_property = models.Property(address=_property.address, type=_property.type,
                                    is_active=_property.is_active, description=_property.description)
     db.add(new_property)

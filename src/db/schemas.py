@@ -20,7 +20,7 @@ class Property(PropertyBase):
         orm_mode = True
 
 
-class UserBase(BaseModel):
+class CustomerBase(BaseModel):
     name: str
     phone_number: str
     address: str
@@ -28,18 +28,18 @@ class UserBase(BaseModel):
     description: Union[str, None] = None
 
 
-class UserCreate(UserBase):
+class CustomerCreate(CustomerBase):
     pass
 
 
-class Buyer(UserBase):
+class Buyer(CustomerBase):
     id: int
 
     class Config:
         orm_mode = True
 
 
-class Seller(UserBase):
+class Seller(CustomerBase):
     id: int
 
     class Config:

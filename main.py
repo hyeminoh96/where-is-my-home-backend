@@ -41,7 +41,7 @@ def read_buyer(buyer_id: int, db: Session = Depends(get_db)):
 
 
 @app.post("/buyer", response_model=schemas.Buyer)
-def create_buyer(buyer: schemas.UserCreate, db: Session = Depends(get_db)):
+def create_buyer(buyer: schemas.CustomerCreate, db: Session = Depends(get_db)):
     # TODO: existing validation
     return crud.create_buyer(db=db, buyer=buyer)
 
@@ -71,7 +71,7 @@ def read_seller(seller_id: int, db: Session = Depends(get_db)):
 
 
 @app.post("/seller", response_model=schemas.Seller)
-def create_seller(seller: schemas.UserCreate, db: Session = Depends(get_db)):
+def create_seller(seller: schemas.CustomerCreate, db: Session = Depends(get_db)):
     # TODO: existing validation
     return crud.create_seller(db=db, seller=seller)
 

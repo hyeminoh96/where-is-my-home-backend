@@ -27,7 +27,7 @@ def get_properties(db: Session, skip: int = 0, limit: int = 100):
     return db.query(models.Property).offset(skip).limit(limit).all()
 
 
-def create_buyer(db: Session, buyer: schemas.UserCreate):
+def create_buyer(db: Session, buyer: schemas.CustomerCreate):
     new_buyer = models.Buyer(name=buyer.name, phone_number=buyer.phone_number, address=buyer.address,
                              is_active=buyer.is_active, description=buyer.description)
     db.add(new_buyer)
@@ -36,7 +36,7 @@ def create_buyer(db: Session, buyer: schemas.UserCreate):
     return new_buyer
 
 
-def create_seller(db: Session, seller: schemas.UserCreate):
+def create_seller(db: Session, seller: schemas.CustomerCreate):
     new_seller = models.Seller(name=seller.name, phone_number=seller.phone_number, address=seller.address,
                                is_active=seller.is_active, description=seller.description)
     db.add(new_seller)

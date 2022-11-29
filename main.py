@@ -1,6 +1,7 @@
 from typing import List
 
 from fastapi import FastAPI, Depends, HTTPException
+from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
 
 from src.db import models, schemas, crud
@@ -9,6 +10,8 @@ from src.db.database import engine, SessionLocal
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 
 def get_db():
@@ -20,8 +23,8 @@ def get_db():
 
 
 @app.get("/")
-def say_hello():
-    return {"message": "Hello World"}
+def say_hello(token: str = Depends(oauth2_scheme)):
+    return {"token": token}
 
 
 # FIXME : root url

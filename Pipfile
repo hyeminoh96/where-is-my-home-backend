@@ -11,6 +11,7 @@ pydantic = "*"
 alembic = "*"
 pymysql = "*"
 cryptography = "*"
+python-multipart = "*"
 
 [dev-packages]
 

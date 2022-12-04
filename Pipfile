@@ -12,6 +12,8 @@ alembic = "*"
 pymysql = "*"
 cryptography = "*"
 python-multipart = "*"
+python-jose = {extras = ["cryptography"], version = "*"}
+passlib = {extras = ["bcrypt"], version = "*"}
 
 [dev-packages]
 

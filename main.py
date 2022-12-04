@@ -4,6 +4,7 @@ from fastapi import FastAPI, Depends, HTTPException
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
 
+from src.auth.user_model import User, get_current_user
 from src.db import models, schemas, crud
 from src.db.database import engine, SessionLocal
 
@@ -117,3 +118,8 @@ def update_property(property_id: int = None):
 @app.delete("/property/{property_id}")
 def delete_property(property_id: int = None):
     return {"delete": {"property_id": property_id}}
+
+
+@app.get("/users/me")
+async def read_users_me(current_user: User = Depends(get_current_user)):
+    return current_user

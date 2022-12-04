@@ -1,10 +1,10 @@
 from typing import List
 
 from fastapi import FastAPI, Depends, HTTPException
-from fastapi.security import OAuth2PasswordBearer
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 
-from src.auth.user_model import User, get_current_user
+from src.auth.user_model import User, get_current_user, fake_users_db, UserInDB, fake_hash_password
 from src.db import models, schemas, crud
 from src.db.database import engine, SessionLocal
 
@@ -118,6 +118,18 @@ def update_property(property_id: int = None):
 @app.delete("/property/{property_id}")
 def delete_property(property_id: int = None):
     return {"delete": {"property_id": property_id}}
+
+
+@app.post("/token")
+async def login(form_data: OAuth2PasswordRequestForm = Depends()):
+    user_dict = fake_users_db.get(form_data.username)
+    if not user_dict:
+        raise HTTPException(status_code=400, detail="Incorrect username or password")
+    user = UserInDB(**user_dict)
+    hashed_password = fake_hash_password(form_data.password)
+    if not hashed_password == user.hashed_password:
+        raise HTTPException(status_code=400, detail="Incorrect username or password")
+    return {"access_token": user.username, "token_type": "bearer"}
 
 
 @app.get("/users/me")
